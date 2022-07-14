@@ -1,0 +1,95 @@
+starting from part II
+
+for creating database we need to type on our mysql propmt
+
+create database [database name];
+
+we can also use schema with databse
+
+create schema
+
+for deleteing the database we need to type
+
+drop database [database name];
+
+we can set the character to any languages like latin and chineese
+
+for that matter we need to use
+
+character set [languages or character name]
+
+collate latin1_bin;
+
+and thats gonna make a database called rookery and set the character to latin
+
+and with the binary option like latin1_bin
+
+for using a database we need to type to the prompt
+
+use [database name];
+
+
+The next step for structuring a database is to create tables. Although this can be
+complicated, we’ll keep it simple to start. We’ll initially create one main table and two
+smaller tables for reference information. The main table will have a bunch of columns, but
+the reference tables will have only a few columns.
+For our fictitious bird-watchers site, the key interest is birds. So we want to create a table
+that will hold basic data on birds. For learning purposes, we won’t make this an elaborate
+table. Enter the following SQL statement into mysql on your computer:
+CREATE TABLE birds (
+bird_id INT AUTO_INCREMENT PRIMARY KEY,
+scientific_name VARCHAR(255) UNIQUE,
+common_name VARCHAR(50),
+family_id INT,
+description TEXT);
+This SQL statement creates the table birds with five fields, or columns, with commas
+separating the information about each column. Note that all the columns together are
+contained in a pair of parentheses. For each colum, we specify the name, the type, and
+optional settings. For instance, the information we give about the first column is:
+The name, bird_id
+The type, INT (meaning it has to contain integers)
+The settings, AUTO_INCREMENT and PRIMARY KEY
+
+
+for viewing the table structure we need to type
+
+describe [tablename];
+
+for viewing the tables data 
+
+select * from [tablename]
+
+if we want to know  the tables existed setting we need to type
+
+show create table birds \G
+
+
+Let me give you an example where setting explicit values for the character set and
+collation might be useful. Suppose you have a typical database for a bird-watcher group
+located in England with most of its common names written in English. Suppose further
+that the site attracts bird-watchers from other countries in Europe, so you might want to
+include common bird names in other languages. Let’s say that you want to set up a table
+for the Turkish bird-watchers. For that table, you would use a different character set and
+collation, because the Turkish alphabet contains both Latin and other letters. For the
+character set, you would use latin5, which has both Latin and other letters. For collation,
+you would use latin5_turkish_ci, which orders text based on the order of the letters in
+the Turkish alphabet. To make sure you don’t forget to use this character set and collation
+when adding columns to this table later, you could set the CHARSET and COLLATE for the
+table to these values.
+
+
+
+
+Now we can put all the information we want about a family of birds in one row. When we
+enter data in the birds table, we’ll include the family_id identification number that will
+reference a row of the bird_families table. This also helps to ensure consistency of data:
+there’s less chance of spelling deviations when you only enter a number and not a Latin
+name. It also saves space because you can store information in one row of bird_families
+and refer to it from hundreds of rows in birds. We’ll see soon how this works.
+
+
+start from chapter 5
+
+
+
+
